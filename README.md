@@ -1,2 +1,0 @@
-# WebAppToolKit
-Webサーバースタートアップキッド
