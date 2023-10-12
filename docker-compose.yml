@@ -1,0 +1,46 @@
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+    - 3306:3306
+    
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    ports:
+      # Cloudflare tunnelには右側のポートを設定すること
+      # ローカルネットワークから接続するときは左側のポートを利用する
+      - 8081:80
+    depends_on:
+      - mysql
+    
+  flask:
+    container_name: flask
+    build: app/
+    ports:
+      # Cloudflare tunnelには右側のポートを設定すること
+      # ローカルネットワークから接続するときは左側のポートを利用する
+    - 5050:5000
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    command: python3 app.py
+    depends_on:
+      - mysql
+  
+  cloudflared: 
+    restart: always
+    image: cloudflare/cloudflared
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=ここ
+    depends_on:
+      - flask
