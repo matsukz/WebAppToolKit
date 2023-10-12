@@ -12,7 +12,7 @@ FlaskとMySQLを用いたWebサーバーをコマンド1つで構成するスタ
 
 ## 構成
 * 全体図
-![image1](image\map.png)
+![image1](https://github.com/matsukz/WebAppToolKit/blob/main/image/map.png)
   * phpmyadminを利用しているため、ローカルネットワーク内で構築することを推奨します
 ### フロントエンド
 * HTML (Jinja2)
