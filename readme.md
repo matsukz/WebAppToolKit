@@ -57,6 +57,11 @@ $ docker-compose -v
 docker-compose version 1.29.2, build 5becea4c
 ```
 * [Docker Compose のインストール - Docker-docs-ja](https://docs.docker.jp/v1.12/compose/install.html)
+  * 公式サイトのコマンドでは古いバージョンのdocker-composeがダウンロードされトラブルの原因となるので以下のコマンドで代用してください(2023-10-19追記)
+  ```bash
+  $ sudo curl -L https://github.com/docker/compose/releases/download/v2.15.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  ```
+  
   * Docker Desktopでは初期状態でdocker-composeが使えると思います 
 ### Visual Studio Code (以下VScode)
 コンテナやプログラムの操作に使います。適宜インストールしてください。以下は一例です
