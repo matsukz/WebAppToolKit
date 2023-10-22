@@ -113,10 +113,15 @@ docker-compose version 1.29.2, build 5becea4c
 
 ## 使い方
 ### 起動
-* ターミナルを起動し以下のコマンドを実行する
-  ```bash
-  $ docker-compose up -d
-  ```
+* ターミナルを起動しコマンドを実行する
+  1. `docker-compose.yml`があるディレクトリへ移動(例)
+      ```bash 
+      $ cd WebAppToolKit
+      ```
+  2. `docker-compose`を起動
+      ```bash
+      $ docker-compose up -d
+      ```
     * 以下のように出力されれば完了です(たぶん)
       ```bash
       Creating webapptoolkit_mysql_1 ... done
@@ -124,9 +129,19 @@ docker-compose version 1.29.2, build 5becea4c
       Creating webapptoolkit_phpmyadmin_1 ... done
       Creating webapptoolkit_cloudflared_1 ... done
       ``` 
-  * もしエラーが発生した場合は以下の手順で起動する
-  1.  VScodeを起動し`docker-compose.yml`を右クリックで選択
-  2.  右クリックメニューから`Compose Up`を選択する
+  * `permission denied`と出力され実行できないときは以下の手順を試す
+      1. ユーザーをグループに参加させる
+          ```bash
+          $ sudo gpasswd -a $USER docker
+          ```
+      2. docker再起動
+          ```bash
+          $ sudo systemctl restart docker
+          ```
+      3. OS再起動
+          ```bash
+          $ sudo reboot
+          ```
 ### 全体のログをリアルタイムで確認する
 * ターミナルを起動し以下のコマンドを実行する
 ```bash
@@ -156,9 +171,10 @@ $ docker-compose down
 # 参考・引用
 いつもありがとうございます
 ## 参考にしたサイト様
-* [Markdown記法 チートシート - qiita](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
+* [Markdown記法 チートシート - Qiita](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
 * [【速攻】DockerでMySQLとphpMyAdminのコンテナ作成 - Zenn](https://zenn.dev/peishim/articles/f7a76ae6c253e4)
 * [MisskeyをDocker Compose+Cloudflare Tunnelでサクッと建てる - Zenn](https://zenn.dev/hrko/scraps/29df6c7ac02f03)
+* [Dockerコマンドをsudoなしで実行する方法 - Qiita](https://qiita.com/DQNEO/items/da5df074c48b012152ee)
 ## 画像引用
 * [Cloudflareロゴ - CLOUDFLARE](https://www.cloudflare.com/ja-jp/logo/)
 * [Flask](https://flask.palletsprojects.com/en/3.0.x/)
